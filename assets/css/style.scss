@@ -13,6 +13,14 @@ $text-color: #333333;
 $bg-color: #ffffff;
 $border-color: #e0e0e0;
 
+// Dark mode colors
+$dark-bg: #1a1a1a;
+$dark-surface: #2d2d2d;
+$dark-text: #e0e0e0;
+$dark-text-secondary: #b0b0b0;
+$dark-border: #404040;
+$dark-blue: #4a9eff;
+
 // Typography
 $font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 $font-size-base: 16px;
@@ -235,12 +243,20 @@ li {
     text-align: center;
     
     img {
-      width: 180px;
-      height: 180px;
-      border-radius: 12px;
-      border: 1px solid $border-color;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 4px solid $blue;
       display: block;
       margin: 0 auto;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 24px rgba(0, 102, 204, 0.3);
+        border-color: #0052a3;
+      }
     }
     
     .placeholder-svg {
@@ -275,6 +291,65 @@ li {
     line-height: 1.7;
     color: $text-color;
     max-width: 500px;
+  }
+  
+  .hero-social {
+    display: flex;
+    gap: $spacing-lg;
+    margin-top: $spacing-lg;
+    
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: $blue;
+      color: $white;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: #0052a3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+// Theme toggle button
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: $white;
+  border: 2px solid $border-color;
+  color: $text-color;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    background-color: $blue;
+    border-color: $blue;
+    color: $white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+  }
+  
+  &:active {
+    transform: scale(0.95);
   }
 }
 
@@ -347,6 +422,45 @@ li {
   border: 1px solid $border-color;
 }
 
+.aero-section-reverse {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: $spacing-xl * 2;
+  align-items: center;
+  margin: $spacing-xl 0;
+  background-color: $white;
+  padding: $spacing-xl;
+  border-radius: 8px;
+  border: 1px solid $border-color;
+}
+
+.aero-section-full {
+  display: block;
+  grid-template-columns: 1fr;
+  align-items: flex-start;
+}
+
+.aero-content-full {
+  width: 100%;
+  
+  h2 {
+    margin-top: 0;
+    margin-bottom: $spacing-xl;
+    border-bottom: none;
+    text-align: center;
+  }
+  
+  .projects-grid {
+    margin: 0 0 $spacing-xl 0;
+  }
+  
+  .view-all-projects {
+    text-align: center;
+    margin-top: $spacing-xl;
+    margin-bottom: 0;
+  }
+}
+
 .aero-content {
   p {
     font-size: 1.05rem;
@@ -355,6 +469,97 @@ li {
     
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+  
+  h2 {
+    margin-top: 0;
+    margin-bottom: $spacing-lg;
+    border-bottom: none;
+  }
+  
+  h3 {
+    margin-top: $spacing-md;
+  }
+  
+  h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.8rem;
+  }
+}
+
+.hero-profile-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+  
+  img {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    border: 4px solid $blue;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0, 102, 204, 0.3);
+      border-color: #0052a3;
+    }
+  }
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  color: $blue;
+  margin: 0 0 0.3rem 0;
+  font-weight: $font-weight-normal;
+}
+
+.hero-affiliation {
+  font-size: 1rem;
+  color: $gray-dark;
+  margin: 0 0 $spacing-lg 0;
+  font-style: italic;
+}
+
+.hero-bio {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: $text-color;
+}
+
+.hero-social {
+  display: flex;
+  gap: $spacing-lg;
+  margin-top: $spacing-lg;
+  
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: $blue;
+    color: $white;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: #0052a3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+      text-decoration: none;
     }
   }
 }
@@ -473,6 +678,36 @@ li {
   flex-wrap: wrap;
 }
 
+// Projects section
+.projects-section {
+  margin: $spacing-xl * 2 0;
+  
+  h2 {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+  }
+}
+
+.view-all-projects {
+  text-align: center;
+  margin-top: $spacing-xl;
+  
+  a {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: $blue;
+    color: $white;
+    border-radius: 4px;
+    font-weight: $font-weight-bold;
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+      background-color: #0052a3;
+      text-decoration: none;
+    }
+  }
+}
+
 // Project cards
 .projects-grid {
   display: grid;
@@ -570,6 +805,234 @@ dd {
   padding-left: 0;
 }
 
+// Dark mode styles
+body.dark-mode {
+  background-color: $dark-bg;
+  color: $dark-text;
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: $dark-text;
+  }
+  
+  h2 {
+    border-bottom-color: $dark-border;
+  }
+  
+  a {
+    color: $dark-blue;
+    font-weight: $font-weight-normal;
+    
+    &:hover {
+      color: #5fadff;
+      text-decoration: underline;
+    }
+  }
+  
+  code {
+    background-color: $dark-surface;
+    color: $dark-text;
+  }
+  
+  pre {
+    background-color: $dark-surface;
+    color: $dark-text;
+  }
+  
+  .hero {
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    border-bottom-color: $dark-border;
+    
+    .hero-subtitle {
+      color: $dark-blue;
+    }
+    
+    .hero-affiliation {
+      color: $dark-text-secondary;
+    }
+    
+    .hero-bio {
+      color: $dark-text;
+    }
+    
+    .hero-image img {
+      border-color: $dark-blue;
+      box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2);
+      
+      &:hover {
+        box-shadow: 0 8px 24px rgba(74, 158, 255, 0.4);
+      }
+    }
+    
+    .hero-social a {
+      background-color: $dark-blue;
+      
+      &:hover {
+        background-color: #3a8eef;
+      }
+    }
+  }
+  
+  .theme-toggle {
+    background-color: $dark-surface;
+    border-color: $dark-border;
+    color: $dark-text;
+    
+    &:hover {
+      background-color: $dark-blue;
+      border-color: $dark-blue;
+      color: $white;
+    }
+  }
+  
+  .aero-section {
+    background-color: $dark-surface;
+    border-color: $dark-border;
+  }
+  
+  .aero-section-reverse {
+    background-color: $dark-surface;
+    border-color: $dark-border;
+  }
+  
+  .aero-section-full {
+    background-color: $dark-surface;
+    border-color: $dark-border;
+  }
+  
+  .hero-subtitle {
+    color: $dark-blue;
+  }
+  
+  .hero-affiliation {
+    color: $dark-text-secondary;
+  }
+  
+  .hero-bio {
+    color: $dark-text;
+  }
+  
+  .hero-profile-image img {
+    border-color: $dark-blue;
+    box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2);
+    
+    &:hover {
+      box-shadow: 0 8px 24px rgba(74, 158, 255, 0.4);
+    }
+  }
+  
+  .hero-social a {
+    background-color: $dark-blue;
+    
+    &:hover {
+      background-color: #3a8eef;
+    }
+  }
+  
+  .interests-section {
+    background-color: $dark-surface;
+  }
+  
+  .projects-section {
+    h2 {
+      color: $dark-text;
+    }
+  }
+  
+  .view-all-projects a {
+    background-color: $dark-blue !important;
+    color: $white !important;
+    font-weight: $font-weight-bold;
+    
+    &:hover {
+      background-color: #5fadff !important;
+      text-decoration: none;
+    }
+  }
+  
+  .lab-section {
+    background-color: $dark-surface;
+    border-left-color: $dark-blue;
+    
+    h4 {
+      color: $dark-blue;
+    }
+    
+    .lab-link {
+      background-color: $dark-blue !important;
+      color: $white;
+      
+      &:hover {
+        background-color: #3a8eef !important;
+        text-decoration: none;
+      }
+    }
+  }
+  
+  .aero-image {
+    img {
+      box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2);
+    }
+  }
+  
+  .project-card {
+    background-color: $dark-surface;
+    border-color: $dark-border;
+    
+    &:hover {
+      border-color: $dark-blue;
+      box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2);
+    }
+    
+    .project-image {
+      background-color: $dark-bg;
+    }
+    
+    p {
+      color: $dark-text-secondary;
+    }
+    
+    a {
+      background-color: $dark-blue !important;
+      color: $white !important;
+      
+      &:hover {
+        background-color: #3a8eef !important;
+        text-decoration: none;
+      }
+    }
+  }
+  
+  .aero-image {
+    img {
+      box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2);
+    }
+  }
+  
+  .footer {
+    background-color: $dark-surface;
+    border-top-color: $dark-border;
+    
+    a {
+      color: $dark-text;
+      
+      &:hover {
+        color: $dark-blue;
+      }
+    }
+  }
+  
+  .interests-list a,
+  .aero-content a {
+    color: $dark-blue !important;
+    text-decoration: underline;
+    
+    &:hover {
+      color: #5fadff !important;
+      text-decoration: underline;
+    }
+  }
+}
+
 // Responsive
 @media (max-width: $breakpoint-md) {
   h1 {
@@ -623,6 +1086,29 @@ dd {
     }
   }
   
+  .aero-section-reverse {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    
+    .aero-image {
+      width: 100%;
+      height: 250px;
+      margin: 0 auto;
+      order: -1;
+    }
+    
+    .hero-profile-image {
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+      
+      img {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
+  
   .lab-section {
     grid-template-columns: 1fr;
     gap: $spacing-lg;
@@ -644,3 +1130,6 @@ dd {
     }
   }
 }
+
+/* Hide navbar (temporary) */
+.navbar{display:none !important;}
