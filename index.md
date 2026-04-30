@@ -27,7 +27,7 @@ permalink: /
       <a href="https://linkedin.com/in/zzfernando" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
         <i class="fab fa-linkedin"></i>
       </a>
-      <a href="mailto:fernando.silveira@inf.ufrgs.br" aria-label="Email">
+      <a href="mailto:{{ site.email }}" aria-label="Email">
         <i class="fas fa-envelope"></i>
       </a>
     </div>
@@ -150,9 +150,7 @@ permalink: /
       </div>
     </div>
 
-    <div class="view-all-projects">
-      <a href="/projects/">View all projects →</a>
-    </div>
+
   </div>
 </div>
 
@@ -193,7 +191,7 @@ permalink: /
     
     <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Get in Touch</h4>
     <ul class="interests-list">
-      <li><strong>Email:</strong> <a href="mailto:fernando.silveira@inf.ufrgs.br">fernando.silveira@inf.ufrgs.br</a></li>
+      <li><strong>Email:</strong> <a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
       <li><strong>GitHub:</strong> <a href="https://github.com/zzfernando" target="_blank" rel="noopener noreferrer">zzFernando</a></li>
       <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/zzfernando" target="_blank" rel="noopener noreferrer">in/zzfernando</a></li>
     </ul>
