@@ -523,6 +523,95 @@ body.dark-mode {
 
   dt { color: $sp-cyan; }
   dd { color: $dark-gray; }
+
+  #back-to-top {
+    background-color: $sp-yellow;
+    color: $sp-black;
+    border-color: $sp-yellow;
+    box-shadow: 3px 3px 0 $sp-pink;
+    &:hover { box-shadow: 5px 5px 0 $sp-cyan; }
+  }
+
+  .hero-profile-image::after {
+    color: $sp-cyan;
+    background-color: $dark-surface;
+    border-color: $sp-cyan;
+  }
+}
+
+// ─── BACK TO TOP ─────────────────────────────────────────────────────────────
+#back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+  background-color: $sp-yellow;
+  color: $sp-black;
+  font-size: 1rem;
+  border: 2px solid $sp-black;
+  box-shadow: 3px 3px 0 $sp-black;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.1s, box-shadow 0.1s;
+
+  &.visible { opacity: 1; pointer-events: auto; }
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 $sp-pink;
+  }
+  &:active { transform: translate(0, 0); box-shadow: none; }
+}
+
+// ─── PROFILE HOVER LEVEL UP ──────────────────────────────────────────────────
+.hero-profile-image {
+  position: relative;
+
+  &::after {
+    content: "Per Ardua Ad Astra!";
+    font-family: $font-pixel;
+    font-size: 0.45rem;
+    color: $sp-yellow;
+    background-color: $sp-black;
+    border: 2px solid $sp-yellow;
+    padding: 0.3rem 0.5rem;
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+// ─── SCAN LINES (dark mode only) ─────────────────────────────────────────────
+body.dark-mode::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
 }
 
 // ─── RESPONSIVE ──────────────────────────────────────────────────────────────

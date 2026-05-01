@@ -16,9 +16,13 @@
   <meta name="author" content="{{ site.author }}">
   
   {% seo %}
+  <meta property="og:image" content="{{ site.url }}/assets/images/profile_pic.jpeg">
+  <meta name="twitter:image" content="{{ site.url }}/assets/images/profile_pic.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicon.svg' | relative_url }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
@@ -29,7 +33,14 @@
   </main>
   
   {% include footer.html %}
-  
+
+  <button id="back-to-top" aria-label="Voltar ao topo">▲</button>
+
   <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}"></script>
+  <script>
+    const btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
 </body>
 </html>

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /_*
+Disallow: /assets/
+
+Sitemap: https://zzfernando.github.io/sitemap.xml

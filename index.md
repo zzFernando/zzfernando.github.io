@@ -30,6 +30,9 @@ permalink: /
       <a href="mailto:{{ site.email }}" aria-label="Email">
         <i class="fas fa-envelope"></i>
       </a>
+      <a href="http://lattes.cnpq.br/6508343705598182" target="_blank" rel="noopener noreferrer" aria-label="Currículo Lattes">
+        <i class="ai ai-lattes"></i>
+      </a>
     </div>
   </div>
 </div>
