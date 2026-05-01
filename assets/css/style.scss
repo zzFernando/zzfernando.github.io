@@ -2,274 +2,162 @@
 # Jekyll SCSS
 ---
 
-// Colors
-$black: #1a1a1a;
-$white: #ffffff;
-$gray-dark: #333333;
-$gray-light: #f5f5f5;
-$gray-lighter: #f9f9f9;
-$blue: #0066cc;
-$text-color: #333333;
-$bg-color: #ffffff;
-$border-color: #e0e0e0;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600&display=swap');
 
-// Dark mode colors
-$dark-bg: #1a1a1a;
-$dark-surface: #2d2d2d;
-$dark-text: #e0e0e0;
-$dark-text-secondary: #b0b0b0;
-$dark-border: #404040;
-$dark-blue: #4a9eff;
+// Light mode palette (Scott Pilgrim comic book)
+$light-bg:      #fffef0;
+$light-surface: #ffffff;
+$light-text:    #111111;
+$light-gray:    #555555;
+$light-border:  #111111;
+
+// Neon accents (shared)
+$sp-yellow: #ffe000;
+$sp-pink:   #ff2079;
+$sp-cyan:   #00e5ff;
+$sp-black:  #111111;
+$sp-white:  #f0f0f0;
+
+// Dark mode palette
+$dark-bg:      #0a0a0f;
+$dark-surface: #12121a;
+$dark-text:    #f0f0f0;
+$dark-gray:    #888888;
 
 // Typography
-$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-$font-size-base: 16px;
-$line-height-base: 1.6;
-$font-weight-normal: 400;
-$font-weight-bold: 600;
+$font-pixel: 'Press Start 2P', monospace;
+$font-body:  'Inter', -apple-system, sans-serif;
 
 // Spacing
-$spacing-unit: 1rem;
 $spacing-sm: 0.5rem;
 $spacing-md: 1rem;
 $spacing-lg: 1.5rem;
 $spacing-xl: 2rem;
 
-// Breakpoints
-$breakpoint-sm: 576px;
 $breakpoint-md: 768px;
-$breakpoint-lg: 992px;
 
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 
 body {
-  font-family: $font-family;
-  font-size: $font-size-base;
-  line-height: $line-height-base;
-  color: $text-color;
-  background-color: $bg-color;
+  font-family: $font-body;
+  font-size: 16px;
+  line-height: 1.7;
+  color: $light-text;
+  background-color: $light-bg;
 }
 
-// Typography
 h1, h2, h3, h4, h5, h6 {
-  margin-top: $spacing-unit * 1.5;
-  margin-bottom: $spacing-unit * 0.5;
-  font-weight: $font-weight-bold;
-  line-height: 1.2;
+  font-family: $font-pixel;
+  line-height: 1.5;
+  margin-bottom: $spacing-md;
+  color: $light-text;
 }
 
-h1 {
-  font-size: 2.5rem;
-  margin-top: 0;
-}
+h1 { font-size: 1.4rem; margin-top: 0; }
+h2 { font-size: 0.95rem; color: $sp-black; margin-top: $spacing-xl; padding-bottom: 0.5rem; border-bottom: 3px solid $sp-black; }
+h3 { font-size: 0.7rem; color: $sp-pink; margin-top: $spacing-lg; }
+h4 { font-size: 0.6rem; color: $sp-black; margin-top: $spacing-md; }
 
-h2 {
-  font-size: 1.8rem;
-  border-bottom: 1px solid $border-color;
-  padding-bottom: 0.5rem;
-  margin-top: $spacing-xl;
-}
-
-h3 {
-  font-size: 1.3rem;
-  margin-top: $spacing-lg;
-}
-
-p {
-  margin: 0 0 $spacing-unit 0;
-}
+p { margin: 0 0 $spacing-md 0; }
 
 a {
-  color: $blue;
+  color: $sp-pink;
   text-decoration: none;
-  transition: color 0.2s ease;
-  
-  &:hover {
-    text-decoration: underline;
-  }
+  font-weight: 600;
+  transition: color 0.1s;
+  &:hover { color: darken($sp-pink, 15%); text-decoration: underline; }
 }
 
 code {
-  background-color: $gray-light;
+  background-color: #f0f0f0;
   padding: 0.2rem 0.4rem;
-  border-radius: 3px;
-  font-family: "Courier New", monospace;
-  font-size: 0.9em;
+  font-family: monospace;
+  font-size: 0.95em;
+  color: $sp-black;
+  border: 1px solid $sp-black;
 }
 
 pre {
-  background-color: $gray-light;
-  padding: $spacing-unit;
-  border-radius: 4px;
+  background-color: #f0f0f0;
+  padding: $spacing-md;
+  border: 2px solid $sp-black;
   overflow-x: auto;
-  
-  code {
-    background-color: transparent;
-    padding: 0;
-  }
+  code { background: transparent; padding: 0; border: none; }
 }
 
-blockquote {
-  border-left: 4px solid $border-color;
-  margin: $spacing-unit 0;
-  padding-left: $spacing-unit;
-  color: $gray-dark;
-}
+ul, ol { margin: $spacing-md 0; padding-left: 2rem; }
+li { margin-bottom: 0.5rem; }
 
-ul, ol {
-  margin: $spacing-unit 0;
-  padding-left: 2rem;
-}
-
-li {
-  margin-bottom: 0.5rem;
-}
-
-
+// Layout
 .content {
-  min-height: calc(100vh - 240px);
-  
+  min-height: 100vh;
   .container {
     max-width: 1000px;
     margin: 0 auto;
-    padding: $spacing-xl $spacing-unit;
+    padding: $spacing-xl $spacing-md;
   }
 }
 
 .footer {
-  background-color: $gray-lighter;
-  border-top: 1px solid $border-color;
-  padding: $spacing-xl $spacing-unit;
+  background-color: $sp-yellow;
+  border-top: 3px solid $sp-black;
+  padding: $spacing-xl $spacing-md;
   margin-top: $spacing-xl * 2;
-  
+
   .container {
     max-width: 1000px;
     margin: 0 auto;
     text-align: center;
-    font-size: 0.95rem;
+    font-family: $font-pixel;
+    font-size: 0.55rem;
+    line-height: 2;
+    color: $sp-black;
   }
-  
-  .footer-text {
-    margin: 0;
-  }
-  
-  a {
-    color: $text-color;
-    
-    &:hover {
-      color: $blue;
-    }
-  }
+
+  .footer-text { margin: 0; }
+  a { color: $sp-black; &:hover { color: $sp-pink; text-decoration: none; } }
 }
 
-
-// Theme toggle button
+// Theme toggle
 .theme-toggle {
   position: fixed;
   top: 20px;
   right: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: $white;
-  border: 2px solid $border-color;
-  color: $text-color;
-  font-size: 1.2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+  background-color: $light-bg;
+  border: 2px solid $sp-black;
+  color: $sp-black;
+  font-size: 1.1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  
+  box-shadow: 3px 3px 0 $sp-black;
+  transition: all 0.1s;
+
   &:hover {
-    background-color: $blue;
-    border-color: $blue;
-    color: $white;
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+    background-color: $sp-yellow;
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 $sp-black;
   }
-  
-  &:active {
-    transform: scale(0.95);
-  }
+  &:active { transform: translate(0, 0); box-shadow: none; }
 }
 
-// Education section
-.education-section {
-  display: grid;
-  gap: $spacing-lg;
-  margin: $spacing-xl 0;
-}
-
-// Interests section
-.interests-section {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: $spacing-xl * 2;
-  align-items: center;
-  margin: $spacing-xl 0;
-  background-color: $gray-lighter;
-  padding: $spacing-xl;
-  border-radius: 8px;
-}
-
-.interests-image {
-  max-width: 100%;
-  
-  .placeholder-svg {
-    width: 100%;
-    max-width: 300px;
-    border-radius: 8px;
-  }
-}
-
-.interests-text {
-  p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-  }
-}
-
-.interests-list {
-  list-style: none;
-  padding: 0;
-  margin: $spacing-lg 0 0 0;
-  
-  li {
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-    
-    &::before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: $blue;
-      font-weight: $font-weight-bold;
-    }
-  }
-}
-
-// Aeronautics section
+// Sections
 .aero-section {
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: $spacing-xl * 2;
   align-items: center;
   margin: $spacing-xl 0;
-  background-color: $white;
+  background-color: $light-surface;
   padding: $spacing-xl;
-  border-radius: 8px;
-  border: 1px solid $border-color;
+  border: 2px solid $sp-black;
+  box-shadow: 5px 5px 0 $sp-black;
 }
 
 .aero-section-reverse {
@@ -278,137 +166,102 @@ li {
   gap: $spacing-xl * 2;
   align-items: center;
   margin: $spacing-xl 0;
-  background-color: $white;
+  background-color: $light-surface;
   padding: $spacing-xl;
-  border-radius: 8px;
-  border: 1px solid $border-color;
+  border: 2px solid $sp-black;
+  box-shadow: 5px 5px 0 $sp-black;
 }
 
 .aero-section-full {
   display: block;
-  grid-template-columns: 1fr;
-  align-items: flex-start;
+  margin: $spacing-xl 0;
+  background-color: $light-surface;
+  padding: $spacing-xl;
+  border: 2px solid $sp-black;
+  box-shadow: 5px 5px 0 $sp-black;
 }
 
 .aero-content-full {
   width: 100%;
-  
-  h2 {
-    margin-top: 0;
-    margin-bottom: $spacing-xl;
-    border-bottom: none;
-    text-align: center;
-  }
-  
-  .projects-grid {
-    margin: 0 0 $spacing-xl 0;
-  }
-  
-  .view-all-projects {
-    text-align: center;
-    margin-top: $spacing-xl;
-    margin-bottom: 0;
-  }
+  h2 { margin-top: 0; border-bottom: none; text-align: center; }
 }
 
 .aero-content {
-  p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    margin: 0 0 $spacing-lg 0;
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  
-  h2 {
-    margin-top: 0;
-    margin-bottom: $spacing-lg;
-    border-bottom: none;
-  }
-  
-  h3 {
-    margin-top: $spacing-md;
-  }
-  
-  h1 {
-    margin: 0 0 0.5rem 0;
-    font-size: 2.8rem;
-  }
+  h2 { margin-top: 0; border-bottom: none; }
+  h3 { margin-top: $spacing-md; }
+  h1 { margin: 0 0 0.5rem 0; }
+  p { font-size: 1rem; line-height: 1.8; margin: 0 0 $spacing-lg 0; &:last-child { margin-bottom: 0; } }
 }
 
+// Hero
 .hero-profile-image {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: auto;
-  height: auto;
-  background: transparent;
-  border-radius: 0;
-  overflow: visible;
-  box-shadow: none;
-  
+
   img {
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
-    border: 4px solid $blue;
+    width: 220px;
+    height: 220px;
+    border-radius: 0;
+    border: 3px solid $sp-black;
     display: block;
     object-fit: cover;
     object-position: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    
+    box-shadow: 6px 6px 0 $sp-pink;
+    transition: all 0.15s;
+
     &:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 24px rgba(0, 102, 204, 0.3);
-      border-color: #0052a3;
+      transform: translate(-3px, -3px);
+      box-shadow: 9px 9px 0 $sp-pink;
     }
   }
 }
 
 .hero-subtitle {
-  font-size: 1.3rem;
-  color: $blue;
+  font-family: $font-pixel;
+  font-size: 0.65rem;
+  color: $sp-pink;
   margin: 0 0 0.3rem 0;
-  font-weight: $font-weight-normal;
 }
 
 .hero-affiliation {
-  font-size: 1rem;
-  color: $gray-dark;
+  font-size: 0.9rem;
+  color: $light-gray;
   margin: 0 0 $spacing-lg 0;
   font-style: italic;
 }
 
 .hero-bio {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: $text-color;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: $light-text;
 }
 
 .hero-social {
   display: flex;
-  gap: $spacing-lg;
+  gap: $spacing-md;
   margin-top: $spacing-lg;
-  
+
   a {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 44px;
     height: 44px;
-    border-radius: 50%;
-    background-color: $blue;
-    color: $white;
+    border-radius: 0;
+    background-color: $sp-black;
+    color: $sp-white !important;
     font-size: 1.2rem;
-    transition: all 0.3s ease;
-    
+    border: 2px solid $sp-black;
+    box-shadow: 3px 3px 0 $sp-pink;
+    transition: all 0.1s;
+
     &:hover {
-      background-color: #0052a3;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+      background-color: $sp-pink;
+      border-color: $sp-pink;
+      color: $sp-white !important;
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 $sp-black;
       text-decoration: none;
     }
   }
@@ -417,148 +270,35 @@ li {
 .aero-image {
   width: 300px;
   height: 300px;
-  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  border: 2px solid $sp-black;
+  box-shadow: 4px 4px 0 $sp-pink;
+
+  img { width: 100%; height: 100%; object-fit: cover; }
 }
 
-// Project cards
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: $spacing-xl;
-  margin: $spacing-xl 0;
-}
+// Interests list
+.interests-list {
+  list-style: none;
+  padding: 0;
+  margin: $spacing-lg 0 0 0;
 
-// Laboratory section
-.lab-section {
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  gap: $spacing-xl * 2;
-  align-items: flex-start;
-  margin: $spacing-xl 0;
-  background-color: $gray-lighter;
-  padding: $spacing-xl;
-  border-radius: 8px;
-  border-left: 4px solid $blue;
-}
+  li {
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    position: relative;
 
-.lab-logo {
-  width: 150px;
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: $white;
-  border-radius: 8px;
-  padding: $spacing-lg;
-}
-
-.lab-content {
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
-  }
-  
-  h4 {
-    margin-top: $spacing-lg;
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-    color: $blue;
-  }
-  
-  p {
-    margin: 0.5rem 0;
-    font-size: 0.95rem;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0.5rem 0 $spacing-lg 0;
-    
-    li {
-      padding: 0.4rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-      font-size: 0.95rem;
-      
-      &::before {
-        content: "▸";
-        position: absolute;
-        left: 0;
-        color: $blue;
-      }
+    &::before {
+      content: "▶";
+      position: absolute;
+      left: 0;
+      color: $sp-pink;
+      font-size: 0.6rem;
+      top: 0.65rem;
     }
   }
 }
 
-.lab-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem;
-  background-color: $blue;
-  color: $white;
-  border-radius: 4px;
-  font-weight: $font-weight-bold;
-  transition: background-color 0.2s ease;
-  
-  i {
-    margin-right: 0.5rem;
-  }
-  
-  &:hover {
-    background-color: #0052a3;
-    text-decoration: none;
-  }
-}
-
-.lab-links {
-  display: flex;
-  gap: $spacing-lg;
-  margin-top: $spacing-lg;
-  flex-wrap: wrap;
-}
-
-// Projects section
-.projects-section {
-  margin: $spacing-xl * 2 0;
-  
-  h2 {
-    text-align: center;
-    margin-bottom: $spacing-xl;
-  }
-}
-
-.view-all-projects {
-  text-align: center;
-  margin-top: $spacing-xl;
-  
-  a {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: $blue;
-    color: $white;
-    border-radius: 4px;
-    font-weight: $font-weight-bold;
-    transition: background-color 0.2s ease;
-    
-    &:hover {
-      background-color: #0052a3;
-      text-decoration: none;
-    }
-  }
-}
-
-// Project cards
+// Projects
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -567,384 +307,243 @@ li {
 }
 
 .project-card {
-  background-color: $white;
-  border: 1px solid $border-color;
-  border-radius: 8px;
+  background-color: $light-surface;
+  border: 2px solid $sp-black;
+  box-shadow: 4px 4px 0 $sp-black;
   overflow: hidden;
-  transition: all 0.3s ease;
-  
+  transition: all 0.1s;
+
   &:hover {
-    border-color: $blue;
-    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.1);
+    border-color: $sp-pink;
+    box-shadow: 6px 6px 0 $sp-pink;
+    transform: translate(-2px, -2px);
   }
-  
+
   .project-image {
     width: 100%;
     aspect-ratio: 1.5;
-    background-color: $gray-lighter;
+    background-color: $light-bg;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    
-    .placeholder-svg {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    
-    svg {
-      width: 100%;
-      height: 100%;
-    }
+    border-bottom: 2px solid $sp-black;
   }
-  
+
   h3 {
-    margin: $spacing-lg $spacing-lg 0.5rem $spacing-lg;
-    font-size: 1.2rem;
+    margin: $spacing-md $spacing-md 0.5rem $spacing-md;
+    font-size: 0.6rem;
+    color: $sp-black;
   }
-  
+
   p {
-    margin: 0 $spacing-lg $spacing-lg $spacing-lg;
-    font-size: 0.95rem;
-    color: $gray-dark;
+    margin: 0 $spacing-md $spacing-md $spacing-md;
+    font-size: 0.9rem;
+    color: $light-gray;
   }
-  
+
   .project-actions {
     display: flex;
-    gap: $spacing-lg;
-    padding: 0 $spacing-lg $spacing-lg $spacing-lg;
-    align-items: center;
+    gap: $spacing-md;
+    padding: 0 $spacing-md $spacing-md $spacing-md;
     flex-wrap: wrap;
   }
-  
+
   a {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    background-color: $blue;
-    color: $white;
-    border-radius: 4px;
-    font-weight: $font-weight-bold;
-    transition: background-color 0.2s ease;
-    white-space: nowrap;
-    height: 40px;
-    
-    i {
-      margin-right: 0.5rem;
-    }
-    
+    padding: 0.4rem 0.8rem;
+    background-color: $sp-black;
+    color: $sp-white !important;
+    font-family: $font-pixel;
+    font-size: 0.5rem;
+    border: 2px solid $sp-black;
+    box-shadow: 2px 2px 0 $sp-pink;
+    height: auto;
+    transition: all 0.1s;
+
+    i { margin-right: 0.4rem; }
+
     &:hover {
-      background-color: #0052a3;
+      background-color: $sp-pink;
+      border-color: $sp-pink;
+      color: $sp-white !important;
+      box-shadow: 3px 3px 0 $sp-black;
+      transform: translate(-1px, -1px);
       text-decoration: none;
     }
   }
 }
 
-// Definition lists (for education)
+// Lab links
+.lab-links {
+  display: flex;
+  gap: $spacing-lg;
+  margin-top: $spacing-lg;
+  flex-wrap: wrap;
+}
+
+.lab-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: $sp-pink;
+  color: $sp-white !important;
+  border: 2px solid $sp-pink;
+  box-shadow: 3px 3px 0 $sp-black;
+  font-family: $font-pixel;
+  font-size: 0.55rem;
+  transition: all 0.1s;
+
+  i { margin-right: 0.5rem; }
+
+  &:hover {
+    background-color: $sp-black;
+    border-color: $sp-black;
+    color: $sp-white !important;
+    box-shadow: 4px 4px 0 $sp-pink;
+    transform: translate(-1px, -1px);
+    text-decoration: none;
+  }
+}
+
 dt {
-  font-weight: $font-weight-bold;
+  font-family: $font-pixel;
+  font-size: 0.6rem;
+  color: $sp-pink;
   margin-top: $spacing-lg;
 }
+dd { margin-left: 0; margin-bottom: $spacing-md; color: $light-gray; padding-left: 0; }
 
-dd {
-  margin-left: 0;
-  margin-bottom: $spacing-md;
-  color: $gray-dark;
-  padding-left: 0;
-}
-
-// Dark mode styles
+// ─── DARK MODE ───────────────────────────────────────────────────────────────
 body.dark-mode {
   background-color: $dark-bg;
   color: $dark-text;
-  
-  h1, h2, h3, h4, h5, h6 {
-    color: $dark-text;
-  }
-  
-  h2 {
-    border-bottom-color: $dark-border;
-  }
-  
-  a {
-    color: $dark-blue;
-    font-weight: $font-weight-normal;
-    
-    &:hover {
-      color: #5fadff;
-      text-decoration: underline;
-    }
-  }
-  
-  code {
-    background-color: $dark-surface;
-    color: $dark-text;
-  }
-  
-  pre {
-    background-color: $dark-surface;
-    color: $dark-text;
-  }
-  
-  .theme-toggle {
-    background-color: $dark-surface;
-    border-color: $dark-border;
-    color: $dark-text;
-    
-    &:hover {
-      background-color: $dark-blue;
-      border-color: $dark-blue;
-      color: $white;
-    }
-  }
-  
-  .aero-section {
-    background-color: $dark-surface;
-    border-color: $dark-border;
-  }
-  
-  .aero-section-reverse {
-    background-color: $dark-surface;
-    border-color: $dark-border;
-  }
-  
-  .aero-section-full {
-    background-color: $dark-surface;
-    border-color: $dark-border;
-  }
-  
-  .hero-subtitle {
-    color: $dark-blue;
-  }
-  
-  .hero-affiliation {
-    color: $dark-text-secondary;
-  }
-  
-  .hero-bio {
-    color: $dark-text;
-  }
-  
-  .hero-profile-image img {
-    border-color: $dark-blue;
-    box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2);
-    
-    &:hover {
-      box-shadow: 0 8px 24px rgba(74, 158, 255, 0.4);
-    }
-  }
-  
-  .hero-social a {
-    background-color: $dark-blue;
-    color: $white !important;
 
-    &:hover {
-      background-color: #3a8eef;
-      color: $white !important;
-      text-decoration: none;
-    }
-  }
-  
-  .interests-section {
-    background-color: $dark-surface;
-  }
-  
-  .projects-section {
-    h2 {
-      color: $dark-text;
-    }
-  }
-  
-  .view-all-projects a {
-    background-color: $dark-blue !important;
-    color: $white !important;
-    font-weight: $font-weight-bold;
-    
-    &:hover {
-      background-color: #5fadff !important;
-      text-decoration: none;
-    }
-  }
-  
-  .lab-section {
-    background-color: $dark-surface;
-    border-left-color: $dark-blue;
-    
-    h4 {
-      color: $dark-blue;
-    }
-    
-    .lab-link {
-      background-color: $dark-blue !important;
-      color: $white !important;
+  h1, h2, h3, h4, h5, h6 { color: $dark-text; }
+  h2 { color: $sp-yellow; border-bottom-color: $sp-yellow; }
+  h3 { color: $sp-cyan; }
+  h4 { color: $sp-pink; }
 
-      &:hover {
-        background-color: #3a8eef !important;
-        color: $white !important;
-        text-decoration: none;
-      }
-    }
-  }
-  
-  .aero-image {
-    img {
-      box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2);
-    }
-  }
-  
-  .project-card {
-    background-color: $dark-surface;
-    border-color: $dark-border;
-    
-    &:hover {
-      border-color: $dark-blue;
-      box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2);
-    }
-    
-    .project-image {
-      background-color: $dark-bg;
-    }
-    
-    p {
-      color: $dark-text-secondary;
-    }
-    
-    a {
-      background-color: $dark-blue !important;
-      color: $white !important;
-      
-      &:hover {
-        background-color: #3a8eef !important;
-        text-decoration: none;
-      }
-    }
-  }
-  
-  .aero-image {
-    img {
-      box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2);
-    }
-  }
-  
+  a { color: $sp-yellow; &:hover { color: $sp-pink; } }
+
   .footer {
     background-color: $dark-surface;
-    border-top-color: $dark-border;
-    
+    border-top-color: $sp-yellow;
+    .container { color: $dark-gray; }
+    a { color: $sp-yellow; &:hover { color: $sp-pink; } }
+  }
+
+  .theme-toggle {
+    background-color: $dark-bg;
+    border-color: $sp-yellow;
+    color: $sp-yellow;
+    box-shadow: 3px 3px 0 $sp-yellow;
+    &:hover { background-color: $sp-yellow; color: $sp-black; box-shadow: 5px 5px 0 $sp-pink; }
+  }
+
+  .aero-section,
+  .aero-section-reverse,
+  .aero-section-full {
+    background-color: $dark-surface;
+    border-color: $sp-yellow;
+    box-shadow: 5px 5px 0 $sp-yellow;
+  }
+
+  .hero-profile-image img {
+    border-color: $sp-yellow;
+    box-shadow: 6px 6px 0 $sp-pink;
+    &:hover { box-shadow: 9px 9px 0 $sp-pink; }
+  }
+
+  .hero-subtitle { color: $sp-cyan; }
+  .hero-affiliation { color: $dark-gray; }
+  .hero-bio { color: $dark-text; }
+
+  .hero-social a {
+    background-color: $sp-yellow;
+    border-color: $sp-yellow;
+    color: $sp-black !important;
+    box-shadow: 3px 3px 0 $sp-pink;
+
+    &:hover {
+      background-color: $sp-pink;
+      border-color: $sp-pink;
+      color: $sp-white !important;
+      box-shadow: 5px 5px 0 $sp-yellow;
+    }
+  }
+
+  .aero-image {
+    border-color: $sp-yellow;
+    box-shadow: 4px 4px 0 $sp-pink;
+  }
+
+  .interests-list li::before { color: $sp-yellow; }
+
+  .project-card {
+    background-color: $dark-surface;
+    border-color: $sp-yellow;
+    box-shadow: 4px 4px 0 $sp-yellow;
+
+    &:hover { border-color: $sp-pink; box-shadow: 6px 6px 0 $sp-pink; }
+
+    .project-image { background-color: $dark-bg; border-bottom-color: $sp-yellow; }
+    h3 { color: $sp-yellow; }
+    p { color: $dark-gray; }
+
     a {
-      color: $dark-text;
-      
+      background-color: $sp-yellow;
+      border-color: $sp-yellow;
+      color: $sp-black !important;
+      box-shadow: 2px 2px 0 $sp-pink;
+
       &:hover {
-        color: $dark-blue;
+        background-color: $sp-pink;
+        border-color: $sp-pink;
+        color: $sp-white !important;
+        box-shadow: 3px 3px 0 $sp-yellow;
       }
     }
   }
-  
-  .interests-list a,
-  .aero-content a:not(.lab-link):not([class]) {
-    color: $dark-blue !important;
-    text-decoration: underline;
+
+  .lab-link {
+    background-color: $sp-pink;
+    border-color: $sp-pink;
+    color: $sp-white !important;
+    box-shadow: 3px 3px 0 $sp-yellow;
 
     &:hover {
-      color: #5fadff !important;
-      text-decoration: underline;
+      background-color: $sp-yellow;
+      border-color: $sp-yellow;
+      color: $sp-black !important;
+      box-shadow: 4px 4px 0 $sp-pink;
     }
   }
 
-  .hero-social a,
-  .lab-links a,
-  .project-actions a {
-    color: $white !important;
-
-    &:hover {
-      color: $white !important;
-      text-decoration: none;
-    }
-  }
+  dt { color: $sp-cyan; }
+  dd { color: $dark-gray; }
 }
 
-// Responsive
+// ─── RESPONSIVE ──────────────────────────────────────────────────────────────
 @media (max-width: $breakpoint-md) {
-  h1 {
-    font-size: 2rem;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
-  
-  .hero {
-    padding: $spacing-xl $spacing-unit;
-    
-    .hero-content {
-      grid-template-columns: 1fr;
-      gap: $spacing-lg;
-    }
-    
-    .hero-text {
-      h1 {
-        font-size: 2rem;
-      }
-    }
-  }
-  
-  .interests-section {
-    grid-template-columns: 1fr;
-  }
-  
+  h1 { font-size: 1rem; }
+  h2 { font-size: 0.75rem; }
+
   .aero-section {
     grid-template-columns: 1fr;
     gap: $spacing-lg;
-    
-    .aero-image {
-      width: 100%;
-      height: 250px;
-      margin: 0 auto;
-    }
+    .aero-image { width: 100%; height: 220px; }
   }
-  
+
   .aero-section-reverse {
     grid-template-columns: 1fr;
     gap: $spacing-lg;
-    
-    .aero-image {
-      width: 100%;
-      height: 250px;
-      margin: 0 auto;
-      order: -1;
-    }
-    
-    .hero-profile-image {
-      width: 100%;
-      height: auto;
-      margin: 0 auto;
-      
-      img {
-        width: 200px;
-        height: 200px;
-      }
-    }
+    .aero-image { width: 100%; height: 220px; order: -1; }
+    .hero-profile-image img { width: 180px; height: 180px; }
   }
-  
-  .lab-section {
-    grid-template-columns: 1fr;
-    gap: $spacing-lg;
-    
-    .lab-logo {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto;
-    }
-  }
-  
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .content {
-    .container {
-      padding: $spacing-lg $spacing-unit;
-    }
-  }
+
+  .projects-grid { grid-template-columns: 1fr; }
+
+  .content .container { padding: $spacing-lg $spacing-md; }
 }
